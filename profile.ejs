@@ -1,0 +1,40 @@
+<%- include('../partials/header') %>
+
+<section class="profile-page">
+  <div class="profile-photo">
+    <% if (currentUser.profilePic) { %>
+      <img src="<%= currentUser.profilePic %>" alt="<%= currentUser.name %> profile picture">
+    <% } else { %>
+      <span><%= currentUser.name.charAt(0).toUpperCase() %></span>
+    <% } %>
+  </div>
+
+  <div class="profile-info">
+    <p class="eyebrow">Profile</p>
+    <h1><%= currentUser.name %></h1>
+    <dl>
+      <div>
+        <dt>Email</dt>
+        <dd><%= currentUser.email %></dd>
+      </div>
+      <div>
+        <dt>Role</dt>
+        <dd><%= currentUser.role %></dd>
+      </div>
+      <div>
+        <dt>Phone</dt>
+        <dd><%= currentUser.phone || 'Not added' %></dd>
+      </div>
+      <div>
+        <dt>Address</dt>
+        <dd><%= currentUser.address || 'Not added' %></dd>
+      </div>
+      <div>
+        <dt>Login Type</dt>
+        <dd><%= currentUser.authProvider %></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
