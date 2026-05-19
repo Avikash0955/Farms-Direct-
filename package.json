@@ -1,0 +1,39 @@
+{
+  "name": "farmdirect-backend-project",
+  "version": "1.0.0",
+  "description": "FarmDirect backend project with JWT auth, Google login, MongoDB, profile uploads, marketplace, and orders.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "check": "node scripts/check-syntax.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": [
+    "farmdirect",
+    "express",
+    "mongodb",
+    "jwt",
+    "google-oauth"
+  ],
+  "author": "FarmDirect Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.9.5",
+    "multer": "^2.0.2",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
