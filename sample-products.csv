@@ -1,0 +1,13 @@
+name,category,season,quantity,unit,price,description
+Tomato,Vegetables,Winter,120,kg,35,"Fresh red tomatoes suitable for salad, curry, and daily kitchen use."
+Potato,Vegetables,All Season,250,kg,22,"Farm-fresh potatoes available in bulk quantity."
+Onion,Vegetables,All Season,180,kg,28,"Clean and dry onions directly from the farmer."
+Carrot,Vegetables,Winter,90,kg,45,"Crunchy winter carrots harvested fresh."
+Spinach,Vegetables,Winter,60,bundle,15,"Leafy green spinach bundles grown with careful irrigation."
+Mango,Fruits,Summer,140,kg,85,"Sweet seasonal mangoes from local farms."
+Apple,Fruits,Winter,100,kg,120,"Fresh apples packed for direct customer delivery."
+Banana,Fruits,All Season,220,dozen,55,"Naturally ripened bananas for daily consumption."
+Watermelon,Fruits,Summer,70,piece,90,"Juicy summer watermelons supplied directly from the farm."
+Wheat,Grains,Winter,40,quintal,2400,"Good quality wheat grains for household and commercial use."
+Rice,Grains,Rainy,35,quintal,3200,"Clean rice grains available after seasonal harvest."
+Organic Honey,Organic Products,All Season,80,kg,280,"Pure organic honey collected from local farm sources."
