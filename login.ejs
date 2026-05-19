@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<section class="auth-shell compact-auth">
+  <div class="auth-copy">
+    <p class="eyebrow">Welcome Back</p>
+    <h1>Login to FarmDirect</h1>
+    <p>Access your dashboard, marketplace orders, and product listings.</p>
+  </div>
+
+  <form class="form-panel" action="/auth/login" method="POST">
+    <label>
+      Email
+      <input type="email" name="email" required placeholder="name@example.com">
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" required placeholder="Your password">
+    </label>
+
+    <button class="btn btn-primary full-width" type="submit">Login</button>
+
+    <% if (googleReady) { %>
+      <a class="btn btn-google full-width" href="/auth/google">Continue with Google</a>
+    <% } else { %>
+      <span class="btn btn-google disabled full-width">Google login needs .env credentials</span>
+    <% } %>
+
+    <p class="form-note">New to FarmDirect? <a href="/signup">Create an account</a>.</p>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>
