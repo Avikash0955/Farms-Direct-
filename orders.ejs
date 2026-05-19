@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <p class="eyebrow">Orders</p>
+  <h1><%= currentUser.role === 'farmer' ? 'Customer orders' : 'Your purchases' %></h1>
+  <p>Track product quantity, amount, delivery address, and order status.</p>
+</section>
+
+<section class="section">
+  <% if (orders.length) { %>
+    <div class="order-list large-list">
+      <% orders.forEach((order) => { %>
+        <article class="order-card">
+          <div>
+            <span class="tag"><%= order.status %></span>
+            <h2><%= order.product ? order.product.name : 'Product removed' %></h2>
+            <p>
+              <%= order.quantity %> <%= order.product ? order.product.unit : '' %>
+              for Rs. <%= order.totalAmount %>
+            </p>
+          </div>
+          <div class="order-details">
+            <p><strong>Buyer:</strong> <%= order.buyer ? order.buyer.name : 'Customer' %></p>
+            <p><strong>Farmer:</strong> <%= order.farmer ? order.farmer.name : 'Farmer' %></p>
+            <p><strong>Address:</strong> <%= order.deliveryAddress %></p>
+            <p><strong>Date:</strong> <%= order.createdAt.toLocaleDateString('en-IN') %></p>
+          </div>
+
+          <% if (currentUser.role === 'farmer') { %>
+            <form action="/orders/<%= order._id %>/status" method="POST" class="status-form">
+              <select name="status" required>
+                <% FARMER_ORDER_UPDATES.forEach((item) => { %>
+                  <option value="<%= item %>" <%= order.status === item ? 'selected' : '' %>><%= item %></option>
+                <% }) %>
+              </select>
+              <button class="btn btn-secondary" type="submit">Update</button>
+            </form>
+          <% } %>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state centered">
+      <h2>No orders found</h2>
+      <p><%= currentUser.role === 'farmer' ? 'Orders will appear when customers buy your listed products.' : 'Browse the marketplace to place your first order.' %></p>
+      <a class="btn btn-primary" href="/marketplace">Open Marketplace</a>
+    </div>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>
