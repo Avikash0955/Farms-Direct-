@@ -1,0 +1,67 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <p class="eyebrow">Farmer Listing</p>
+  <h1>Add a product</h1>
+  <p>Enter product category, season, quantity, and price for the marketplace.</p>
+</section>
+
+<section class="form-section">
+  <form class="form-panel wide-form" action="/products" method="POST">
+    <div class="two-column">
+      <label>
+        Product Name
+        <input type="text" name="name" required placeholder="Tomato, wheat, mango">
+      </label>
+      <label>
+        Category
+        <select name="category" required>
+          <option value="">Select category</option>
+          <% PRODUCT_CATEGORIES.forEach((item) => { %>
+            <option value="<%= item %>"><%= item %></option>
+          <% }) %>
+        </select>
+      </label>
+    </div>
+
+    <div class="two-column">
+      <label>
+        Season
+        <select name="season" required>
+          <option value="">Select season</option>
+          <% PRODUCT_SEASONS.forEach((item) => { %>
+            <option value="<%= item %>"><%= item %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>
+        Unit
+        <select name="unit">
+          <% PRODUCT_UNITS.forEach((item) => { %>
+            <option value="<%= item %>"><%= item %></option>
+          <% }) %>
+        </select>
+      </label>
+    </div>
+
+    <div class="two-column">
+      <label>
+        Quantity
+        <input type="number" name="quantity" required min="1" placeholder="100">
+      </label>
+      <label>
+        Price Per Unit
+        <input type="number" name="price" required min="1" placeholder="40">
+      </label>
+    </div>
+
+    <label>
+      Description
+      <textarea name="description" rows="4" placeholder="Fresh, organic, harvested this week"></textarea>
+    </label>
+
+    <button class="btn btn-primary" type="submit">Add to Marketplace</button>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>
