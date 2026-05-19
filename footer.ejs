@@ -1,0 +1,19 @@
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>FarmDirect</strong>
+      <p>Fresh produce, honest prices, direct farmer connection.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/marketplace">Marketplace</a>
+      <a href="/about">Project Details</a>
+      <% if (!currentUser) { %>
+        <a href="/signup">Join</a>
+      <% } %>
+    </div>
+  </footer>
+
+  <script src="/public/js/main.js"></script>
+</body>
+</html>
