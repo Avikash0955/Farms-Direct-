@@ -1,0 +1,6 @@
+node_modules/
+.env
+uploads/profile-pics/*
+!uploads/profile-pics/.gitkeep
+FarmDirect-Backend-Project.zip
+npm-debug.log*

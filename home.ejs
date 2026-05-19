@@ -1,0 +1,88 @@
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Online Marketplace for Farmers</p>
+    <h1>Fresh crops. Fair prices. Direct from farms.</h1>
+    <p>
+      Farmers list seasonal products, customers buy directly, and the supply chain becomes simpler for everyone.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/marketplace">Browse Marketplace</a>
+      <% if (!currentUser) { %>
+        <a class="btn btn-secondary" href="/signup">Create Account</a>
+      <% } else if (currentUser.role === 'farmer') { %>
+        <a class="btn btn-secondary" href="/products/new">List a Product</a>
+      <% } %>
+    </div>
+  </div>
+  <img
+    class="hero-image"
+    src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+    alt="Green farm field"
+  >
+</section>
+
+<section class="stats-band">
+  <article>
+    <strong><%= productCount %>+</strong>
+    <span>Available products</span>
+  </article>
+  <article>
+    <strong><%= farmerCount %>+</strong>
+    <span>Registered farmers</span>
+  </article>
+  <article>
+    <strong>4</strong>
+    <span>Crop categories</span>
+  </article>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">FarmDirect</p>
+    <h2>Built for farmers and customers</h2>
+  </div>
+  <div class="feature-grid">
+    <article class="feature-card">
+      <span>01</span>
+      <h3>Better crop prices</h3>
+      <p>Farmers reach buyers without depending only on middlemen.</p>
+    </article>
+    <article class="feature-card">
+      <span>02</span>
+      <h3>Seasonal browsing</h3>
+      <p>Customers filter vegetables, fruits, grains, and organic products by season.</p>
+    </article>
+    <article class="feature-card">
+      <span>03</span>
+      <h3>Simple workflow</h3>
+      <p>Login, list products, browse the marketplace, and place orders.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section split-section">
+  <img
+    src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80"
+    alt="Farmer holding fresh produce"
+  >
+  <div>
+    <p class="eyebrow">Recent Listings</p>
+    <h2>Fresh from the marketplace</h2>
+    <% if (recentProducts.length) { %>
+      <div class="mini-list">
+        <% recentProducts.forEach((product) => { %>
+          <a href="/marketplace" class="mini-item">
+            <strong><%= product.name %></strong>
+            <span><%= product.category %> - <%= product.season %> - Rs. <%= product.price %>/<%= product.unit %></span>
+          </a>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="muted">No products yet. Farmers can add the first listing from the dashboard.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>
