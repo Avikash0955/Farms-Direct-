@@ -1,0 +1,15 @@
+<% if (success && success.length) { %>
+  <section class="flash flash-success">
+    <% success.forEach((message) => { %>
+      <p><%= message %></p>
+    <% }) %>
+  </section>
+<% } %>
+
+<% if (error && error.length) { %>
+  <section class="flash flash-error">
+    <% error.forEach((message) => { %>
+      <p><%= message %></p>
+    <% }) %>
+  </section>
+<% } %>
