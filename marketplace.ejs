@@ -1,0 +1,101 @@
+<%- include('../partials/header') %>
+
+<section class="page-heading">
+  <p class="eyebrow">Marketplace</p>
+  <h1>Seasonal products from farmers</h1>
+  <p>Filter crops by category, season, or product name.</p>
+</section>
+
+<section class="filter-band">
+  <form action="/marketplace" method="GET" class="filter-form">
+    <label>
+      Search
+      <input type="search" name="search" value="<%= filters.search || '' %>" placeholder="Tomato, wheat, mango">
+    </label>
+    <label>
+      Category
+      <select name="category">
+        <option value="">All categories</option>
+        <% PRODUCT_CATEGORIES.forEach((item) => { %>
+          <option value="<%= item %>" <%= filters.category === item ? 'selected' : '' %>><%= item %></option>
+        <% }) %>
+      </select>
+    </label>
+    <label>
+      Season
+      <select name="season">
+        <option value="">All seasons</option>
+        <% PRODUCT_SEASONS.forEach((item) => { %>
+          <option value="<%= item %>" <%= filters.season === item ? 'selected' : '' %>><%= item %></option>
+        <% }) %>
+      </select>
+    </label>
+    <button class="btn btn-primary" type="submit">Apply Filters</button>
+    <a class="btn btn-secondary" href="/marketplace">Reset</a>
+  </form>
+</section>
+
+<section class="section">
+  <% if (products.length) { %>
+    <div class="product-grid">
+      <% products.forEach((product) => { %>
+        <article class="product-card">
+          <div>
+            <span class="tag"><%= product.category %></span>
+            <h2><%= product.name %></h2>
+            <p><%= product.description || 'Fresh farm product available for direct purchase.' %></p>
+          </div>
+          <dl class="product-meta">
+            <div>
+              <dt>Season</dt>
+              <dd><%= product.season %></dd>
+            </div>
+            <div>
+              <dt>Available</dt>
+              <dd><%= product.quantity %> <%= product.unit %></dd>
+            </div>
+            <div>
+              <dt>Price</dt>
+              <dd>Rs. <%= product.price %>/<%= product.unit %></dd>
+            </div>
+            <div>
+              <dt>Farmer</dt>
+              <dd><%= product.farmer ? product.farmer.name : 'FarmDirect Farmer' %></dd>
+            </div>
+          </dl>
+
+          <% if (currentUser) { %>
+            <% if (String(currentUser._id) !== String(product.farmer._id)) { %>
+              <form action="/orders" method="POST" class="order-form">
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <label>
+                  Quantity
+                  <input type="number" name="quantity" min="1" max="<%= product.quantity %>" value="1" required>
+                </label>
+                <label>
+                  Delivery Address
+                  <textarea name="deliveryAddress" rows="2" required placeholder="House, street, city"><%= currentUser.address || '' %></textarea>
+                </label>
+                <button class="btn btn-primary full-width" type="submit">Place Order</button>
+              </form>
+            <% } else { %>
+              <p class="muted">This is your listing.</p>
+            <% } %>
+          <% } else { %>
+            <a class="btn btn-primary full-width" href="/login">Login to Order</a>
+          <% } %>
+        </article>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <div class="empty-state centered">
+      <h2>No matching products</h2>
+      <p>Try a different category, season, or search term.</p>
+      <% if (currentUser && currentUser.role === 'farmer') { %>
+        <a class="btn btn-primary" href="/products/new">Add Product</a>
+      <% } %>
+    </div>
+  <% } %>
+</section>
+
+<%- include('../partials/footer') %>
